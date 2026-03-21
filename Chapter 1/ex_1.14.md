@@ -1,4 +1,4 @@
-## Exercise 1.15
+## Exercise 1.14
 
 Partial call tree for `(count-change 11)`:
 
