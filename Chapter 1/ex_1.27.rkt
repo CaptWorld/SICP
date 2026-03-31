@@ -1,0 +1,31 @@
+#lang sicp
+
+(define (carmichael? n)
+  (define (dec x) (- x 1))
+  (define (expmod base exp m)
+    (define (even? x) (= (remainder x 2) 0))
+    (define (square x) (* x x))
+    (define (halve x) (/ x 2))
+    (cond ((= exp 0) 1)
+          ((even? exp) (remainder (square (expmod base
+                                                  (halve exp)
+                                                  m))
+                                  m))
+          (else (remainder (* base (expmod base
+                                           (dec exp)
+                                           m))
+                           m))))
+  (define (try-it a)
+    (= (expmod a n n) a))
+  (define (iter a)
+    (cond ((< a 2) #t)
+          ((try-it a) (iter (dec a)))
+          (else #f)))
+  (iter (dec n)))
+
+(carmichael? 561)
+(carmichael? 1105)
+(carmichael? 1729)
+(carmichael? 2465)
+(carmichael? 2821)
+(carmichael? 6601)
