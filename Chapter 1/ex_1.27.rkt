@@ -1,4 +1,5 @@
 #lang sicp
+(#%require rackunit)
 
 (define (carmichael? n)
   (define (dec x) (- x 1))
@@ -23,9 +24,13 @@
           (else #f)))
   (iter (dec n)))
 
-(carmichael? 561)
-(carmichael? 1105)
-(carmichael? 1729)
-(carmichael? 2465)
-(carmichael? 2821)
-(carmichael? 6601)
+
+(test-case
+  "Tests for carmichael function"
+  (check-true (carmichael? 561))
+  (check-true (carmichael? 561))
+  (check-true (carmichael? 1105))
+  (check-true (carmichael? 1729))
+  (check-true (carmichael? 2465))
+  (check-true (carmichael? 2821))
+  (check-true (carmichael? 6601)))
